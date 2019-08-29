@@ -1,6 +1,6 @@
 # Orientation
 25기 WITH SOPT 오리엔테이션
 
-# [준비 자료](./setting-environment.md)
-
 # [Orientation]()
+
+# [개발 환경 세팅](./setting-environment.md)

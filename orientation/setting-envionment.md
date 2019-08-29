@@ -1,4 +1,4 @@
-# OT 준비자료
+# 개발 환경 세팅
 
 # Node JS 설치 방법
 ![screenSh](./img/nodejs-install.png)
