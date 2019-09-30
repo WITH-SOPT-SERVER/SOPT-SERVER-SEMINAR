@@ -30,10 +30,14 @@ Local(컴퓨터)에서 개인 Repository에서만 pull을 받았다면 이제는
 
 ![screenSH](./img/screensh_sourcetree_settings_remote.png)
 
-5. 확인을 눌러주면 왼쪽 아래에 원격 아래의 upstream이 생긴것을 확인할 수 있습니다. 그리고 우 클릭을 하면 upstream에서 가져오기 버튼이 있습니다.
+5. 확인을 눌러주면 왼쪽 아래에 원격 아래의 upstream이 생긴것을 확인할 수 있습니다.
+
+> 만약 upstream 아래에 아무것도 없다면 (우클릭)->(upstream 에서 가져오기) 를 클릭하면 최신 버전의 원격 저장소 정보를 확인할 수 있습니다.
+
+master를 우 클릭을 하면 `upstream/master를  master로 가져오기`를 클릭해주면 공용 저장소에서 Local 저장소로 변경사항이 적용되게 됩니다.
 
 ![screenSH](./img/screensh_get_from_upstream.png)
 
 
-6. upstream에서 가져오기를 한다면 서버에서 작업한 내용이 local 공간에 적용되는 것을 확인 할 수 있습니다.
+6. 이제 local 저장소에서 공용 저장소에 적용된 내용이 업데이트 된 것을 확인할 수 있습니다.
 
