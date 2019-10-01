@@ -26,6 +26,8 @@ origin  https://github.com/YOUR_USERNAME/SHARED-LEARNING.git (push)
 ```
 
 주소의 YOUR_USERNAME은 자신의 github 아이디가 적혀 있을 것입니다. 
+<br>
+<br>
 
 
 2. 다음으로 동기화 하고 싶은 원본 repository(내꺼 말고 SOPT꺼) 를 upstream이라는 이름으로 추가해줍니다.
@@ -35,6 +37,8 @@ $ git remote add upstream https://github.com/WITH-SOPT-SERVER/SHARED-LEARNING.gi
 ```
 
 꼭 원본 repository의 주소를 입력해 주세요!!
+<br>
+<br>
 
 3. upstream repository가 제대로 추가되었는지 확인해볼게요~!!
 
@@ -47,6 +51,8 @@ upstream  https://github.com/WITH-SOPT-SERVER/SHARED-LEARNING.git (push)
 ```
 
 잘 따라 오셨습니다. 이제 upstream repository의 내용을 가져오겠습니다.
+<br>
+<br>
 
 4. git의 fetch 명령어를 통해 upstream repository 내용을 불러옵니다.
 
@@ -61,6 +67,8 @@ From https://github.com/WITH-SOPT-SERVER/SHARED-LEARNING.git
 ```
 
 거의 다 했습니다~~
+<br>
+<br>
 
 5. upstream repository의 master branch로 부터 local master branch로 merge합니다.
 
@@ -77,6 +85,8 @@ Fast-forward
 ```
 
 여기까지 하셨으면 마지막입니다!!
+<br>
+<br>
 
 6. 마지막으로 push 명령어를 통해 remote repository(내 github repository)에도 적용시켜줍니다.
 
