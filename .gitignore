@@ -1,2 +1,5 @@
 seminar2/sourcecode/node_modules/
 seminar2/sourcecode/package-lock.json
+seminar2/project/node_modules
+seminar2/project/public
+seminar2/project/package-lock.json
