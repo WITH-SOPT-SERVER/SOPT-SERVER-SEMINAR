@@ -1,6 +1,7 @@
 const statusCode = require('../module/statusCode');
 const responseMessage = require('../module/responseMessage');
 const authUtil = require('../module/authUtil')
+const pool = require('../module/pool');
 
 /*
     아래 infoMap은 DB에 적용하기 이전에 임시 변수입니다.
