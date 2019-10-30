@@ -7,7 +7,6 @@ siminar3/httpPracticeProject
 
 # config 파일
 config/*
-awsconfig.json
 dbConfig.js
 
 # Logs
