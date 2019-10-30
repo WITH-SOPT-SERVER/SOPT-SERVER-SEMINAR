@@ -10,7 +10,7 @@ const User = require('../model/user');
     request body
     {
         "id":"아이디",
-        "pwd":"비밀번호",
+        "password":"비밀번호",
         "name":"이름",
         "address":"주소
     }
@@ -21,14 +21,14 @@ const User = require('../model/user');
     4. 서버 오류 
 */
 router.post('/signup', (req, res) => {
-    const {id, pwd, name, address} = req.body;
+    const {id, password, name, address} = req.body;
     // 파라미터 오류
-    if(!id || !pwd || !name || !address) {
+    if(!id || !password || !name || !address) {
         res.status(statusCode.BAD_REQUEST)
         .send(authUtil.successFalse(responseMessage.NULL_VALUE));
         return;
     }
-    User.signup(id,pwd,name, address)
+    User.signup(id,password,name, address)
     .then(({code, json}) => res.status(code).send(json))
     .catch((err) => {
         console.log(err);
@@ -42,7 +42,7 @@ router.post('/signup', (req, res) => {
     request body
     {
         "id":"아이디",
-        "pwd":"비밀번호",
+        "password":"비밀번호",
     }
     response
     1. 성공
@@ -52,14 +52,14 @@ router.post('/signup', (req, res) => {
     4. 서버 오류
 */
 router.post('/signin', (req, res) => {
-    const {id, pwd} = req.body;
+    const {id, password} = req.body;
     // 파라미터 값 체크
-    if(!id || !pwd) {
+    if(!id || !password) {
         res.status(statusCode.BAD_REQUEST)
         .send(authUtil.successFalse(responseMessage.NULL_VALUE));
         return;
     }
-    User.signin(id,pwd)
+    User.signin(id,password)
     .then(({code, json}) => {
         res.status(code).send(json);
     }).catch(err => {
