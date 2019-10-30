@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const statusCode = require('../module/statusCode');
 const responseMessage = require('../module/responseMessage');
-const authUtil = require('../module/authUtil')
+const authUtil = require('../module/authUtil');
 const User = require('../model/user');
 
 /* User Model로 이동
