@@ -4,9 +4,10 @@ seminar2/project/node_modules
 seminar2/project/public
 seminar2/project/package-lock.json
 siminar3/httpPracticeProject
-package-lock.json
-public
-node_modules
+
+package-lock.json*
+public/*
+node_modules/*
 
 # config 파일
 config/*
