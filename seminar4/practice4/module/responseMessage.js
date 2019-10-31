@@ -22,7 +22,7 @@ module.exports = {
     BOARD_DELETE_FAIL: "게시글 삭제 실패",
     ALREADY_ID: "존재하는 ID 입니다.",
     NO_USER: "존재하지 않는 유저 입니다.",
-    NO_BOARD: "존재하는 게시글 입니다.",
+    NO_BOARD: "존재하지 않는 게시글 입니다.",
     MISS_MATCH_PW: "비밀번호가 일치하지 않습니다",
     INTERNAL_SERVER_ERROR: "서버 내부 오류"
 }
