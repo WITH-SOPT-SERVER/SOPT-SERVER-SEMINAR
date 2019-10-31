@@ -4,6 +4,7 @@ const authUtil = require('../module/authUtil');
 const statusCode = require('../module/statusCode');
 const responseMessage = require('../module/responseMessage');
 const User = require('../model/user');
+const encrypt = require('../module/encryption');
 
 /*
     [POST]localhost:3000/user/signup
@@ -30,7 +31,8 @@ router.post('/signup', (req, res) => {
         .send(authUtil.successFalse(`${responseMessage.NULL_VALUE} ${missParameters}`));
         return;
     }
-    User.signup({id, password, name, email, phone})
+    encrypt.encrypt(password)
+    .then(({hashed, salt}) => User.signup({id, name, email, phone, salt, password: hashed}))
     .then(({code, json}) => res.status(code).send(json))
     .catch(err => {
         res.status(statusCode.INTERNAL_SERVER_ERROR)
@@ -60,7 +62,7 @@ router.post('/signin', (req, res) => {
         .send(authUtil.successFalse(responseMessage.NULL_VALUE));
         return;
     }
-    User.signin({id,password})
+    User.signin({id, password})
     .then(({code, json}) => {
         res.status(code).send(json);
     }).catch(err => {
