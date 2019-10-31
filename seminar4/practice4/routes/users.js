@@ -21,19 +21,20 @@ const User = require('../model/user');
     4. 서버 오류 
 */
 router.post('/signup', (req, res) => {
-    const {id, password, name, address} = req.body;
+    const {id, password, name, email, phone} = req.body;
     // 파라미터 오류
-    if(!id || !password || !name || !address) {
+    if(!id || !password || !name || !email || !phone) {
+        const missParameters = Object.entries({id, password, name, email, phone})
+        .filter(it => it[1] == undefined).map(it => it[0]).join(',');
         res.status(statusCode.BAD_REQUEST)
-        .send(authUtil.successFalse(responseMessage.NULL_VALUE));
+        .send(authUtil.successFalse(`${responseMessage.NULL_VALUE} ${missParameters}`));
         return;
     }
-    User.signup(id,password,name, address)
+    User.signup({id, password, name, email, phone})
     .then(({code, json}) => res.status(code).send(json))
-    .catch((err) => {
-        console.log(err);
+    .catch(err => {
         res.status(statusCode.INTERNAL_SERVER_ERROR)
-        .send(responseMessage.INTERNAL_SERVER_ERROR);
+        .send(authUtil.successFalse(responseMessage.INTERNAL_SERVER_ERROR));
     });
 });
 
@@ -59,12 +60,12 @@ router.post('/signin', (req, res) => {
         .send(authUtil.successFalse(responseMessage.NULL_VALUE));
         return;
     }
-    User.signin(id,password)
+    User.signin({id,password})
     .then(({code, json}) => {
         res.status(code).send(json);
     }).catch(err => {
-        console.log(err);
-        res.status(statusCode.INTERNAL_SERVER_ERROR).send(responseMessage.INTERNAL_SERVER_ERROR);
+        res.status(statusCode.INTERNAL_SERVER_ERROR)
+        .send(authUtil.successFalse(responseMessage.INTERNAL_SERVER_ERROR));
     });
 });
 
