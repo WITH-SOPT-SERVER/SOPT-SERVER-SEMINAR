@@ -325,4 +325,89 @@ AccessKeyID와 SecretAccessKey는 해당 페이지를
 또한 이 키를 git에 올리거나 <strong>분실 할</strong>경우 <font color="red"><strong>엄.청.난. 과금폭탄</strong>
 </font>을 받을 수 있으니 꼭 주의하셔야 합니다.
 
+### aws-sdk, multer-s3
+
+#### 설치
+```
+npm install aws-sdk multer-s3
+```
+
+#### multer-s3 설정
+
+1. awsconfig.json 생성
+
+config 폴도 아래에 awsconfig.json파일을 생성하고 아래와 같이 입력한다.
+
+```
+{
+    "accessKeyId": "엑세스키",
+    "secretAccessKey": "시크릿키",
+    "region": "ap-northeast-2"
+}
+```
+
+이때 엑세스키와 시크릿키는 `IAM 생성`에서 얻은 두 키 값을 입력하면 된다.
+
+※ 이 파일은 절때 git에 올라가면 안됩니다.
+
+region의 경우 s3에 접속했을때 url을 확인해 보면
+```
+https://s3.console.aws.amazon.com/s3/buckets/with-sopt-server/?region=ap-northeast-2&tab=management
+```
+region을 확인할 수 있으며 해당되는 값을 입력하면 된다.
+
+
+2. multer.js 생성
+
+config폴더에 multer.js파일을 생성하고 아래의 코드를 입력한다. 또한 버킷이름을 변경해준다.
+```
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
+aws.config.loadFromPath(__dirname + '/awsconfig.json');
+
+const s3 = new aws.S3();
+
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: '버킷이름',
+        acl: 'public-read',
+        key: function(req, file, cb) {
+            cb(null, Date.now() + '.' + file.originalname.split('.').pop());
+        }
+    })
+});
+
+module.exports = upload;
+```
+
+3. 사용방법
+
+기존의 코드는 아래와 같았다.
+
+```
+const multer = require('multer');
+const upload = multer({
+    dest: 'uploads/'
+});
+```
+
+하지만 위의 코드를 삭제하고 아래와 같이 변경하면 된다.
+```
+const upload = require('../config/multer');
+```
+> 이때 위치는 본인의 프로젝트에 맞게 경로를 설정해야 한다.
+
+4. 적용
+
+multer를 사용하는 것과 동일하게 사용할 수 있다.
+
+### postman 화면
+![screenSh](./images/make-multer-s3-01.PNG)
+단 multer와 다르게 file객체에 좀 더 많은 정보가 담겨져 있는 것을 확인할 수 있다.
+여기서 location key값에 있는 정보를 DB에 저장하면 된다.
+
+> 또한 size와 mimetype등을 이용해서 의도하지 않는 파일 업로드에 제한을 주는 코드를 구현할 수 있다.
+
 # jwt

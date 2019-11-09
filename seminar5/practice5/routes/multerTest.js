@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router();
 
+/*
+// server에 저장하는 경우 
 const multer = require('multer');
 const upload = multer({
     dest: 'uploads/'
-});
+}); */
+const upload = require('../config/multer');
 
 router.post('/single', upload.single('image'), (req, res) => {
     // req.file 은 `image` 라는 필드의 파일 정보입니다.
