@@ -10,8 +10,10 @@ siminar3/httpPracticeProject
 */*/node_modules
 
 # config 파일
-config/*
-dbConfig.js
+config
+
+# upload files
+uploads
 
 # Logs
 logs
